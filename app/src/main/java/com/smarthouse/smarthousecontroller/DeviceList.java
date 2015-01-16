@@ -4,7 +4,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class DeviceList extends ActionBarActivity {
 
@@ -12,6 +13,20 @@ public class DeviceList extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
+
+        String[] deviceList = new String[] {
+                "Light bulb 01",
+                "Light bulb 02",
+                "Light bulb 03",
+                "Thermometer 01",
+                "Thermometer 02",
+                "Camera 01",
+        };
+
+        ListView lv = (ListView) findViewById(R.id.deviceListCtl);
+
+        ArrayAdapter<String> la = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, deviceList);
+        lv.setAdapter(la);
     }
 
 
