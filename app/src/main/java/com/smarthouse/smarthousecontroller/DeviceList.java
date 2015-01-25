@@ -9,6 +9,8 @@ import android.widget.ListView;
 
 public class DeviceList extends ActionBarActivity {
 
+    public enum DeviceTypes { Camera, Light, Thermometer, SmokeAlarm };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
