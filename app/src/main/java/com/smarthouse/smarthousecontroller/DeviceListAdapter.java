@@ -27,7 +27,6 @@ public class DeviceListAdapter extends BaseAdapter {
     private class ViewHolder {
         ImageView imageView;
         TextView txName;
-        TextView txType;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -36,10 +35,9 @@ public class DeviceListAdapter extends BaseAdapter {
         LayoutInflater mInflator = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
-            convertView = mInflator.inflate(R.layout.row, null);
+            convertView = mInflator.inflate(R.layout.device_list_row, null);
             holder = new ViewHolder();
             holder.txName = (TextView) convertView.findViewById(R.id.name);
-            holder.txType = (TextView) convertView.findViewById(R.id.type);
             holder.imageView = (ImageView) convertView.findViewById(R.id.icon);
             convertView.setTag(holder);
         } else {
@@ -48,7 +46,6 @@ public class DeviceListAdapter extends BaseAdapter {
 
         Device rowItem = (Device) getItem(position);
         holder.txName.setText(rowItem.getName());
-        holder.txType.setText(rowItem.getType().toString());
         holder.imageView.setImageResource(rowItem.getIconID());
 
         return convertView;
