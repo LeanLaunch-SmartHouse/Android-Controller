@@ -2,35 +2,64 @@ package com.smarthouse.smarthousecontroller;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class DeviceList extends ActionBarActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class DeviceList extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
     public enum DeviceTypes { Camera, Light, Thermometer, SmokeAlarm };
+    ArrayList<Device> deviceList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
 
-        String[] deviceList = new String[] {
+        /*String[] deviceList = new String[] {
                 "Light bulb 01",
                 "Light bulb 02",
                 "Light bulb 03",
                 "Thermometer 01",
                 "Thermometer 02",
                 "Camera 01",
+        };*/
+
+        Device dl[] = new Device[] {
+                new Device(Device.DeviceTypes.Light, "Light bulb 01", R.drawable.ic_device_wifi_tethering),
+                new Device(Device.DeviceTypes.Light, "Light bulb 02", R.drawable.ic_device_wifi_tethering),
+                new Device(Device.DeviceTypes.Light, "Light bulb 03", R.drawable.ic_device_wifi_tethering),
+                new Device(Device.DeviceTypes.Thermometer, "Thermometer 01", R.drawable.ic_content_report),
         };
+
+        deviceList = new ArrayList<Device>();
+        for (int i = 0; i < dl.length; i++) {
+            deviceList.add(dl[i]);
+        }
 
         ListView lv = (ListView) findViewById(R.id.deviceListCtl);
 
-        ArrayAdapter<String> la = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, deviceList);
-        lv.setAdapter(la);
+        DeviceListAdapter adapter = new DeviceListAdapter(this, deviceList);
+        lv.setAdapter(adapter);
+
+        //ArrayAdapter<String> la = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, deviceList);
+        //lv.setAdapter(la);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+        Toast toast = Toast.makeText(getApplicationContext(), "Item " + (pos + 1) + ": " + deviceList.get(pos), Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+        toast.show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
