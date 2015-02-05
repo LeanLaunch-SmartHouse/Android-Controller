@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Android-Controller.iml" filepath="$PROJECT_DIR$/Android-Controller.iml" />
       <module fileurl="file://$PROJECT_DIR$/SmartHouseController.iml" filepath="$PROJECT_DIR$/SmartHouseController.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
